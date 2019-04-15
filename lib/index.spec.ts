@@ -1,9 +1,9 @@
 import { expect } from 'chai'
-import * as generator from './index'
+import createEvent from './index'
 
 describe ('creating a new SNS event', () => {
   it('should return a valid event', () => {
-    const event = generator.generateEvent('aws:sns',
+    const event = createEvent('aws:sns',
       {
         Records: [{
           Sns: {
@@ -19,7 +19,7 @@ describe ('creating a new SNS event', () => {
 
 describe('createSqsEvent()', function () {
   it('should return SQS mocked event', function () {
-    const event = generator.generateEvent(
+    const event = createEvent(
       'aws:sqs',
       {
         Records: [{
@@ -37,7 +37,7 @@ describe('createSqsEvent()', function () {
 
 describe('createApigEvent()', function () {
   it('should return APIG mocked event', function () {
-    const event = generator.generateEvent(
+    const event = createEvent(
       'aws:apiGateway',
       {
         body: {
@@ -55,7 +55,7 @@ describe('createApigEvent()', function () {
 
 describe('createS3Event()', function () {
   it('should return S3 mocked event', function () {
-    const event = generator.generateEvent(
+    const event = createEvent(
       'aws:s3',
       {
         Records: [{
@@ -77,7 +77,7 @@ describe('createS3Event()', function () {
   })
 
   it('should return S3 mocked event without side-effect', function () {
-    const event = generator.generateEvent(
+    const event = createEvent(
       'aws:s3',
       {
         Records: [{
@@ -93,7 +93,7 @@ describe('createS3Event()', function () {
       },
     )
 
-    const event2 = generator.generateEvent(
+    const event2 = createEvent(
       'aws:s3',
       {
         Records: [{
@@ -118,7 +118,7 @@ describe('createS3Event()', function () {
 
 describe('createScheduledEvent()', function () {
   it('should return Scheduled mocked event', function () {
-    const event = generator.generateEvent(
+    const event = createEvent(
       'aws:scheduled',
       {
         region: 'us-west-2',
@@ -132,7 +132,7 @@ describe('createScheduledEvent()', function () {
 
 describe('createKinesisEvent()', function () {
   it('should return Kinesis mocked event', function () {
-    const event = generator.generateEvent(
+    const event = createEvent(
       'aws:kinesis',
       {
         Records: [{

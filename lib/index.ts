@@ -11,7 +11,7 @@ const dictionary: any = {
   'aws:dynamo': require('./events/aws/dynamo-stream-event-template.json') as DynamoDBStreamEvent
 }
 
-export function generateEvent(eventType: string, body: any): any {
+export default function createEvent(eventType: string, body: any): any {
   const event = dictionary[eventType]
   if (event) {
     return merge(cloneDeep(event), body)
