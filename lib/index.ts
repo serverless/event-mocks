@@ -1,5 +1,6 @@
 import { merge, cloneDeep } from 'lodash'
 import { APIGatewayEvent, ScheduledEvent, S3Event, KinesisStreamEvent, DynamoDBStreamEvent, SQSEvent, SNSEvent } from "aws-lambda"
+import { GeneratedEvent } from './generatedEvent'
 
 const dictionary: any = {
   'aws:sns': require('./events/aws/sns-template.json') as SNSEvent,
@@ -11,9 +12,11 @@ const dictionary: any = {
   'aws:dynamo': require('./events/aws/dynamo-stream-event-template.json') as DynamoDBStreamEvent
 }
 
-export default function createEvent(eventType: string, body: any): any {
+export default function createEvent(eventType: string, body: any): GeneratedEvent {
   const event = dictionary[eventType]
+  let generatedEvent = {} as GeneratedEvent
   if (event) {
-    return merge(cloneDeep(event), body)
+    generatedEvent = merge(cloneDeep(event), body)
   }
+  return generatedEvent
 }

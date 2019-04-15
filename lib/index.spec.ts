@@ -11,7 +11,7 @@ describe ('creating a new SNS event', () => {
           },
         }],
       }
-    )
+    ) as any
     expect(event.Records[0].Sns.Message).to.equal('trigger-email')
     expect(event.Records[0].Sns.Type).to.equal('Notification')
   })
@@ -28,7 +28,7 @@ describe('createSqsEvent()', function () {
           }
         }],
       },
-    )
+    ) as any
 
     expect(event.Records[0].body.foo).to.equal('bar')
     expect(event.Records[0].eventSource).to.equal('aws:sqs')
@@ -45,7 +45,7 @@ describe('createApigEvent()', function () {
           last_name: 'Smith',
         },
       },
-    )
+    ) as any
 
     expect(event.body.first_name).to.equal('Sam')
     expect(event.body.last_name).to.equal('Smith')
@@ -69,7 +69,7 @@ describe('createS3Event()', function () {
           },
         }],
       },
-    )
+    ) as any
 
     expect(event.Records[0].s3.bucket.name).to.equal('my-bucket-name')
     expect(event.Records[0].s3.object.key).to.equal('object-key')
@@ -91,7 +91,7 @@ describe('createS3Event()', function () {
           },
         }],
       },
-    )
+    ) as any
 
     const event2 = createEvent(
       'aws:s3',
@@ -107,7 +107,7 @@ describe('createS3Event()', function () {
           },
         }],
       },
-    )
+    ) as any
 
     expect(event.Records[0].s3.bucket.name).to.equal('my-bucket-name')
     expect(event.Records[0].s3.object.key).to.equal('object-key')
@@ -123,7 +123,7 @@ describe('createScheduledEvent()', function () {
       {
         region: 'us-west-2',
       },
-    )
+    ) as any
 
     expect(event.region).to.equal('us-west-2')
     expect(event['detail-type']).to.equal('Scheduled Event')
@@ -141,7 +141,7 @@ describe('createKinesisEvent()', function () {
           }
         }]
       }
-    )
+    ) as any
 
     expect(new Buffer(event.Records[0].kinesis.data, 'base64').toString('ascii')).to.equal('kinesis test')
   })
