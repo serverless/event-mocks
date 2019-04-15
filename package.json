@@ -26,6 +26,7 @@
     "typescript": "^3.4.3"
   },
   "dependencies": {
-    "deepmerge": "^3.2.0"
+    "@types/lodash": "^4.14.123",
+    "lodash": "^4.17.11"
   }
 }
