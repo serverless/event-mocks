@@ -1,0 +1,1 @@
+{"version":3,"file":"dynamo-stream-event.js","sourceRoot":"./lib/","sources":["events/dynamo-stream-event.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,wDAA6B;AAC7B,gEAAmD;AAGnD;IAAA;IAIA,CAAC;IAHe,0BAAQ,GAAtB,UAAuB,IAAS;QAC9B,OAAO,mBAAK,CAAC,KAAK,EAAE,IAAI,CAAwB,CAAA;IAClD,CAAC;IACH,wBAAC;AAAD,CAAC,AAJD,IAIC;AAJY,8CAAiB"}
