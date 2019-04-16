@@ -137,12 +137,12 @@ describe('createKinesisEvent()', () => {
       {
         Records: [{
           kinesis: {
-            data: new Buffer('kinesis test').toString('base64'),
+            data: Buffer.from('kinesis test').toString('base64'),
           },
         }],
       },
     ) as any
 
-    expect(new Buffer(event.Records[0].kinesis.data, 'base64').toString('ascii')).to.equal('kinesis test')
+    expect(Buffer.from(event.Records[0].kinesis.data, 'base64').toString('ascii')).to.equal('kinesis test')
   })
 })
