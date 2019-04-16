@@ -10,22 +10,22 @@ describe ('creating a new SNS event', () => {
             Message: 'trigger-email',
           },
         }],
-      }
+      },
     ) as any
     expect(event.Records[0].Sns.Message).to.equal('trigger-email')
     expect(event.Records[0].Sns.Type).to.equal('Notification')
   })
 })
 
-describe('createSqsEvent()', function () {
-  it('should return SQS mocked event', function () {
+describe('createSqsEvent()', () => {
+  it('should return SQS mocked event', () => {
     const event = createEvent(
       'aws:sqs',
       {
         Records: [{
           body: {
-            foo: 'bar'
-          }
+            foo: 'bar',
+          },
         }],
       },
     ) as any
@@ -35,8 +35,8 @@ describe('createSqsEvent()', function () {
   })
 })
 
-describe('createApigEvent()', function () {
-  it('should return APIG mocked event', function () {
+describe('createApigEvent()', () => {
+  it('should return APIG mocked event', () => {
     const event = createEvent(
       'aws:apiGateway',
       {
@@ -50,11 +50,11 @@ describe('createApigEvent()', function () {
     expect(event.body.first_name).to.equal('Sam')
     expect(event.body.last_name).to.equal('Smith')
     expect(event.method).to.equal('GET')
-  });
-});
+  })
+})
 
-describe('createS3Event()', function () {
-  it('should return S3 mocked event', function () {
+describe('createS3Event()', () => {
+  it('should return S3 mocked event', () => {
     const event = createEvent(
       'aws:s3',
       {
@@ -76,7 +76,7 @@ describe('createS3Event()', function () {
     expect(event.Records[0].eventName).to.equal('ObjectCreated:Put')
   })
 
-  it('should return S3 mocked event without side-effect', function () {
+  it('should return S3 mocked event without side-effect', () => {
     const event = createEvent(
       'aws:s3',
       {
@@ -116,8 +116,8 @@ describe('createS3Event()', function () {
   })
 })
 
-describe('createScheduledEvent()', function () {
-  it('should return Scheduled mocked event', function () {
+describe('createScheduledEvent()', () => {
+  it('should return Scheduled mocked event', () => {
     const event = createEvent(
       'aws:scheduled',
       {
@@ -127,20 +127,20 @@ describe('createScheduledEvent()', function () {
 
     expect(event.region).to.equal('us-west-2')
     expect(event['detail-type']).to.equal('Scheduled Event')
-  });
-});
+  })
+})
 
-describe('createKinesisEvent()', function () {
-  it('should return Kinesis mocked event', function () {
+describe('createKinesisEvent()', () => {
+  it('should return Kinesis mocked event', () => {
     const event = createEvent(
       'aws:kinesis',
       {
         Records: [{
           kinesis: {
-            data: new Buffer('kinesis test').toString('base64')
-          }
-        }]
-      }
+            data: new Buffer('kinesis test').toString('base64'),
+          },
+        }],
+      },
     ) as any
 
     expect(new Buffer(event.Records[0].kinesis.data, 'base64').toString('ascii')).to.equal('kinesis test')
