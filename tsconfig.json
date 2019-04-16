@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "sourceRoot": "./lib",
+    "moduleResolution": "node",
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+  },
+  "rules": {
+    "arrow-parens": ["as-needed"],
+    "import-spacing": false,
+    "interface-name": ["never-prefix"],
+    "no-console": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": [true, {
+      "grouped-imports": true
+    }],
+    "quotemark": ["single"],
+    "trailing-comma": [true, { "esSpecCompliant": true }],
+    "variable-name": [true, "check-format", "allow-leading-underscore"],
+    "semicolon": [true, "never"],
+    "no-bitwise": false
+  }
+}
