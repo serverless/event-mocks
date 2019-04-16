@@ -11,7 +11,7 @@
     "type": "git",
     "url": "."
   },
-  "author": "AJ Stuyvenberg",
+  "author": "Serverless, Inc.",
   "license": "ISC",
   "devDependencies": {
     "@types/aws-lambda": "^8.10.24",
