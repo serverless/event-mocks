@@ -1,5 +1,5 @@
 # Event Mocks
-A small library that includes details mocks of AWS Lambda event sources. Useful for use when unit testing your Lambda functions. Supported Event Sources are: SNS, API Gateway, S3, & Scheduled.
+A small library that includes details mocks of AWS Lambda event sources. Useful for use when unit testing your Lambda functions. Supported Event Sources are: SNS, SQS, DynamoDB, API Gateway, S3, & Scheduled.
 
 The library simply uses default event source mock templates and merge it with any overwrite you provide. [Check out the JSON template files](./lib/events) to learn more about the data structure of each event source.
 
@@ -8,41 +8,42 @@ The library simply uses default event source mock templates and merge it with an
 ### SNS
 
 ```js
-const createEvent = require('aws-event-mocks');
-const mocked = createEvent({
-  template: 'aws:sns',
-  merge: {
+import createEvent from '@serverless/event-mocks'
+
+const mocked = createEvent(
+  'aws:sns',
+  {
     Records: [{
       Sns: {
         Message: 'trigger-email'
       }
     }]
-  }
-});
+  });
 ```
 
 ### API Gateway
 
 ```js
-const createEvent = require('aws-event-mocks');
-const event = createEvent({
-  template: 'aws:apiGateway',
-  merge: {
+import createEvent from '@serverless/event-mocks'
+
+const event = createEvent(
+  'aws:apiGateway',
+  {
     body: {
       first_name: 'Sam',
       last_name: 'Smith'
     }
-  }
-});
+  });
 ```
 
 ### S3
 
 ```js
-const createEvent = require('aws-event-mocks');
-const event = createEvent({
-  template: 'aws:s3',
-  merge: {
+import createEvent from '@serverless/event-mocks'
+
+const event = createEvent(
+  'aws:s3',
+  {
     Records: [{
       eventName: 'ObjectCreated:Put',
       s3: {
@@ -54,29 +55,28 @@ const event = createEvent({
         }
       }
     }]
-  }
-});
+  });
 ```
 
 ### Scheduled
 
 ```js
-const createEvent = require('aws-event-mocks');
-const event = createEvent({
-  template: 'aws:scheduled',
-  merge: {
+import createEvent from '@serverless/event-mocks'
+
+const event = createEvent(
+  'aws:scheduled',
+  {
     region: 'us-west-2'
-  }
-});
+  });
 ```
 
 ### Kinesis
 
 ```js
-const createEvent = require('aws-event-mocks');
-const event = createEvent({
-  template: 'aws:kinesis',
-  merge: {
+import createEvent from '@serverless/event-mocks'
+
+const event = createEvent(
+  'aws:kinesis',
+  {
     data: new Buffer('this is test data').toString('base64')
-  }
-});
+  });
