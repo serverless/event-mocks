@@ -1,41 +1,63 @@
 {
-  "body": {},
-  "method": "GET",
-  "principalId": "",
-  "stage": "dev",
+  "body": "",
+  "path": "/test/hello",
   "headers": {
-    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-    "Accept-Encoding": "gzip, deflate",
-    "Accept-Language": "en-us",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Accept-Encoding": "gzip, deflate, lzma, sdch, br",
+    "Accept-Language": "en-US,en;q=0.8",
     "CloudFront-Forwarded-Proto": "https",
     "CloudFront-Is-Desktop-Viewer": "true",
     "CloudFront-Is-Mobile-Viewer": "false",
     "CloudFront-Is-SmartTV-Viewer": "false",
     "CloudFront-Is-Tablet-Viewer": "false",
     "CloudFront-Viewer-Country": "US",
-    "Cookie": "__gads=ID=d51d609e5753330d:T=1443694116:S=ALNI_MbjWKzLwdEpWZ5wR5WXRI2dtjIpHw; __qca=P0-179798513-1443694132017; _ga=GA1.2.344061584.1441769647",
-    "Host": "xxx.execute-api.us-east-1.amazonaws.com",
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/601.6.17 (KHTML, like Gecko) Version/9.1.1 Safari/601.6.17",
-    "Via": "1.1 c8a5bb0e20655459eaam174e5c41443b.cloudfront.net (CloudFront)",
-    "X-Amz-Cf-Id": "z7Ds7oXaY8hgUn7lcedZjoIoxyvnzF6ycVzBdQmhn3QnOPEjJz4BrQ==",
-    "X-Forwarded-For": "221.24.103.21, 54.242.148.216",
+    "Host": "wt6mne2s9k.execute-api.us-west-2.amazonaws.com",
+    "Upgrade-Insecure-Requests": "1",
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48",
+    "Via": "1.1 fb7cca60f0ecd82ce07790c9c5eef16c.cloudfront.net (CloudFront)",
+    "X-Amz-Cf-Id": "nBsWBOrSHMgnaROZJK1wGCZ9PcRcSpq_oSXZNQwQ10OTZL4cimZo3g==",
+    "X-Forwarded-For": "192.168.100.1, 192.168.1.1",
     "X-Forwarded-Port": "443",
     "X-Forwarded-Proto": "https"
   },
-  "query": {},
-  "path": {},
-  "identity": {
-    "cognitoIdentityPoolId": "",
-    "accountId": "",
-    "cognitoIdentityId": "",
-    "caller": "",
-    "apiKey": "",
-    "sourceIp": "221.24.103.21",
-    "cognitoAuthenticationType": "",
-    "cognitoAuthenticationProvider": "",
-    "userArn": "",
-    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/601.6.17 (KHTML, like Gecko) Version/9.1.1 Safari/601.6.17",
-    "user": ""
+  "pathParameters": {
+    "proxy": "hello"
   },
-  "stageVariables": {}
+  "multiValueHeaders": {},
+  "isBase64Encoded": false,
+  "multiValueQueryStringParameters": {},
+  "requestContext": {
+    "accountId": "123456789012",
+    "resourceId": "us4z18",
+    "stage": "test",
+    "requestId": "41b45ea3-70b5-11e6-b7bd-69b5aaebc7d9",
+    "identity": {
+      "accessKey": "",
+      "apiKeyId": "",
+      "cognitoIdentityPoolId": "",
+      "accountId": "",
+      "cognitoIdentityId": "",
+      "caller": "",
+      "apiKey": "",
+      "sourceIp": "192.168.100.1",
+      "cognitoAuthenticationType": "",
+      "cognitoAuthenticationProvider": "",
+      "userArn": "",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.82 Safari/537.36 OPR/39.0.2256.48",
+      "user": ""
+    },
+    "path": "",
+    "requestTimeEpoch": 0,
+    "resourcePath": "/{proxy+}",
+    "httpMethod": "GET",
+    "apiId": "wt6mne2s9k"
+  },
+  "resource": "/{proxy+}",
+  "httpMethod": "GET",
+  "queryStringParameters": {
+    "name": "me"
+  },
+  "stageVariables": {
+    "stageVarName": "stageVarValue"
+  }
 }

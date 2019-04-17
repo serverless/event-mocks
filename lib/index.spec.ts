@@ -49,7 +49,7 @@ describe('createApigEvent()', () => {
 
     expect(event.body.first_name).to.equal('Sam')
     expect(event.body.last_name).to.equal('Smith')
-    expect(event.method).to.equal('GET')
+    expect(event.httpMethod).to.equal('GET')
   })
 })
 

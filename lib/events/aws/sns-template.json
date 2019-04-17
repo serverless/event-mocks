@@ -8,7 +8,7 @@
         "Type": "Notification",
         "MessageId": "52ed5e3d-5fgf-56bf-923d-0e5c3b503c2a",
         "TopicArn": "arn:aws:sns:us-east-1:123456789:service-1474781718017-1",
-        "Subject": null,
+        "Subject": "",
         "Message": "hello world",
         "Timestamp": "2016-09-25T05:37:51.150Z",
         "SignatureVersion": "1",
