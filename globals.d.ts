@@ -19,8 +19,6 @@ export interface AlexaSkillEvent {
   version: string,
   session: AlexaSkillSession
   context: AlexaSkillContext
-
-
 }
 
 export interface AlexaSkillSession {
