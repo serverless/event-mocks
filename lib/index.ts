@@ -1,6 +1,6 @@
 import { merge, cloneDeep } from 'lodash'
 import { APIGatewayEvent, ScheduledEvent, S3Event, KinesisStreamEvent, DynamoDBStreamEvent, SQSEvent, SNSEvent, CloudWatchLogsEvent, CognitoUserPoolEvent } from 'aws-lambda'
-import { AlexaSmartHomeEvent, AlexaSkillEvent, CloudWatchEvent } from '../globals'
+import { AlexaSmartHomeEvent, AlexaSkillEvent, CloudWatchEvent } from 'aws-lambda'
 import { GeneratedEvent } from './generatedEvent'
 import snsTemplate from './events/aws/sns-template.json'
 import sqsTemplate from './events/aws/sqs-template.json'
