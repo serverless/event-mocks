@@ -4,28 +4,28 @@ declare module 'aws-lambda' {
     payload: {
       switchControlAction: string
       appliance: {
-        additionalApplianceDetails: { [name: string]: string },
+        additionalApplianceDetails: { [name: string]: string }
         applianceId: string
-      },
+      }
       accessToken: string
     } 
   }
   
   export interface AlexaSkillEvent {
-    version: string,
+    version: string
     session: AlexaSkillSession
     context: AlexaSkillContext
   }
   
   export interface AlexaSkillSession {
-    new: boolean,
+    new: boolean
     sessionId: string
     application: {
       applicationId: string
-    },
+    }
     attributes: {
       [name: string]: string
-    },
+    }
     user: AlexaSkillUser
   }
   
@@ -36,14 +36,14 @@ declare module 'aws-lambda' {
         supportedInterfaces: {
           AudioPlayer: any
         }
-      },
+      }
       application: {
         applicationId: string
-      },
+      }
       user: AlexaSkillUser
       apiEndpoint: string
       apiAccessToken: string
-    },
+    }
     AudioPlayer: {
       playerActivity: string
       token: string
@@ -72,11 +72,11 @@ declare module 'aws-lambda' {
     "detail-type": string
     source: string
     account: string
-    time: string,
-    region: string,
-    resources: string[],
+    time: string
+    region: string
+    resources: string[]
     detail: {
-      "instance-id": string,
+      "instance-id": string
       state: string
     }
   }  
