@@ -8,12 +8,12 @@ import {
   SQSEvent,
   SNSEvent,
   CloudWatchLogsEvent,
-  CognitoUserPoolEvent
+  CognitoUserPoolEvent,
 } from "aws-lambda";
 import {
   AlexaSmartHomeEvent,
   AlexaSkillEvent,
-  CloudWatchEvent
+  CloudWatchEvent,
 } from "aws-lambda";
 import { GeneratedEvent } from "./generatedEvent";
 import snsTemplate from "./events/aws/sns-template.json";
@@ -41,13 +41,13 @@ const dictionary = {
   "aws:alexaSmartHome": alexaSmartHomeEventTemplate as AlexaSmartHomeEvent,
   "aws:alexaSkill": alexaSkillEventTemplate as AlexaSkillEvent,
   "aws:cloudWatch": cloudWatchEventTemplate as CloudWatchEvent,
-  "aws:iot": {},
-  "aws:cognitoUserPool": cognitoUserPoolEventTemplate as CognitoUserPoolEvent
+  "aws:iot": {} as any,
+  "aws:cognitoUserPool": cognitoUserPoolEventTemplate as CognitoUserPoolEvent,
 };
 
 export default function createEvent<T extends keyof typeof dictionary, B>(
   eventType: T,
-  body: typeof dictionary[T]
+  body: typeof dictionary[T],
 ): typeof dictionary[T] {
   const event = dictionary[eventType];
   let generatedEvent = {};

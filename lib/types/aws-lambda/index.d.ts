@@ -12,6 +12,9 @@ declare module 'aws-lambda' {
   }
   
   export interface AlexaSkillEvent {
+    request: {
+      type: string
+    }
     version: string
     session: AlexaSkillSession
     context: AlexaSkillContext
