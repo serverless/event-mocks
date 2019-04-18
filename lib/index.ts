@@ -15,7 +15,7 @@ import {
   AlexaSkillEvent,
   CloudWatchEvent,
 } from "aws-lambda";
-import { GeneratedEvent } from "./generatedEvent";
+
 import snsTemplate from "./events/aws/sns-template.json";
 import sqsTemplate from "./events/aws/sqs-template.json";
 import apiGatewayTemplate from "./events/aws/api-gateway-event-template.json";
