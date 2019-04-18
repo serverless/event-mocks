@@ -18,8 +18,8 @@
       "no-console": false,
       "no-empty-interface": false,
       "no-var-requires": false,
-      "quotemark": [true, "single"],
-      "semicolon": [true, "never"]
+      "quotemark": [true, "double"],
+      "semicolon": [true, "always"]
   },
   "rulesDirectory": [],
   "plugins": [
