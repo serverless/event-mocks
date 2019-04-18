@@ -146,3 +146,93 @@ describe('createKinesisEvent()', () => {
     expect(Buffer.from(event.Records[0].kinesis.data, 'base64').toString('ascii')).to.equal('kinesis test')
   })
 })
+
+describe('createCloudWatchEvent()', () => {
+  it('should return a valid event', () => {
+    const event = createEvent(
+      'aws:cloudWatch',
+      {
+        'detail-type': 'Something has been deleted.',
+        'region': 'us-east-1',
+      },
+    ) as any
+    expect(event['detail-type']).to.equal('Something has been deleted.')
+    expect(event.region).to.equal('us-east-1')
+  })
+})
+
+describe('createCloudWatchLogEvent()', () => {
+  it('should return a valid event', () => {
+    const event = createEvent(
+      'aws:cloudWatchLog',
+      {
+        awslogs: {
+          data: 'Some gzipped, then base64 encoded data',
+        },
+      },
+    ) as any
+    expect(event.awslogs.data).to.equal('Some gzipped, then base64 encoded data')
+  })
+})
+
+describe('createAlexaSkillEvent()', () => {
+  it('should return a valid event', () => {
+    const event = createEvent(
+      'aws:alexaSkill',
+      {
+        request: {
+          type: 'CanFulfillIntentRequest',
+        },
+        context: {
+          System: {
+            deviceId: 'myDevice',
+          },
+        },
+      },
+    ) as any
+    expect(event.request.type).to.equal('CanFulfillIntentRequest')
+    expect(event.context.System.deviceId).to.equal('myDevice')
+  })
+})
+
+describe('createAlexaSmartHomeEvent()', () => {
+  it('should return a valid event', () => {
+    const event = createEvent(
+      'aws:alexaSmartHome',
+      {
+        payload: {
+          switchControlAction: 'TURN_OFF',
+        },
+      },
+    ) as any
+    expect(event.payload.switchControlAction).to.equal('TURN_OFF')
+  })
+})
+
+describe('createIotEvent()', () => {
+  it('should return a valid event', () => {
+    const event = createEvent(
+      'aws:iot',
+      {
+        this: {
+          can: {
+            be: 'anything I want',
+          },
+        },
+      },
+    ) as any
+    expect(event.this.can.be).to.equal('anything I want')
+  })
+})
+
+describe('createCognitoPoolEvent()', () => {
+  it('should return a valid event', () => {
+    const event = createEvent(
+      'aws:cognitoUserPool',
+      {
+        userName: 'notAJ',
+      },
+    ) as any
+    expect(event.userName).to.eql('notAJ')
+  })
+})
