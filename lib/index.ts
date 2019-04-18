@@ -43,6 +43,7 @@ const dictionary = {
   "aws:cloudWatch": cloudWatchEventTemplate as CloudWatchEvent,
   "aws:iot": {} as any,
   "aws:cognitoUserPool": cognitoUserPoolEventTemplate as CognitoUserPoolEvent,
+  "aws:websocket": apiGatewayTemplate as APIGatewayEvent, // Websockets are included in APIG typedef: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/32855/files
 };
 
 export default function createEvent<T extends keyof typeof dictionary, B>(

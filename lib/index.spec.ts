@@ -50,6 +50,27 @@ describe("createApigEvent()", () => {
   });
 });
 
+describe("createWebsocketEvent()", () => {
+  it("should return websocket mocked event", () => {
+    const event = createEvent("aws:websocket", {
+      body: JSON.stringify({
+        first_name: "Sam",
+        last_name: "Smith",
+      }),
+      requestContext: {
+        connectedAt: 123,
+        connectionId: "abc123",
+      },
+    } as any);
+    const parsedBody = JSON.parse(event.body || "");
+
+    expect(parsedBody.first_name).to.equal("Sam");
+    expect(parsedBody.last_name).to.equal("Smith");
+    expect(event.requestContext.connectedAt).to.equal(123);
+    expect(event.requestContext.connectionId).to.equal("abc123");
+  });
+});
+
 describe("createS3Event()", () => {
   it("should return S3 mocked event", () => {
     const event = createEvent("aws:s3", {
