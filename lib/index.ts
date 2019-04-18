@@ -1,6 +1,6 @@
 import { merge, cloneDeep } from 'lodash'
-import { APIGatewayEvent, ScheduledEvent, S3Event, KinesisStreamEvent, DynamoDBStreamEvent, SQSEvent, SNSEvent, CloudWatchLogsEvent } from 'aws-lambda'
-import { AlexaSmartHomeEvent, AlexaSkillEvent } from '../globals'
+import { APIGatewayEvent, ScheduledEvent, S3Event, KinesisStreamEvent, DynamoDBStreamEvent, SQSEvent, SNSEvent, CloudWatchLogsEvent, CognitoUserPoolEvent } from 'aws-lambda'
+import { AlexaSmartHomeEvent, AlexaSkillEvent, CloudWatchEvent } from '../globals'
 import { GeneratedEvent } from './generatedEvent'
 import snsTemplate from './events/aws/sns-template.json'
 import sqsTemplate from './events/aws/sqs-template.json'
@@ -12,6 +12,8 @@ import dynamoTemplate from './events/aws/dynamo-stream-event-template.json'
 import cloudwatchLogsEventTemplate from './events/aws/cloudwatch-logs-event-template.json'
 import alexaSmartHomeEventTemplate from './events/aws/alexa-smart-home-event-template.json'
 import alexaSkillEventTemplate from './events/aws/alexa-skill-event-template.json'
+import cloudWatchEventTemplate from './events/aws/cloud-watch-event-template.json'
+import cognitoUserPoolEventTemplate from './events/aws/cognito-user-pool-event-template.json'
 
 const dictionary: any = {
   'aws:sns':  snsTemplate as SNSEvent,
@@ -24,6 +26,9 @@ const dictionary: any = {
   'aws:cloudwatchLogEvent': cloudwatchLogsEventTemplate as CloudWatchLogsEvent,
   'aws:alexaSmartHomeEvent': alexaSmartHomeEventTemplate as AlexaSmartHomeEvent,
   'aws:alexaSkillEvent': alexaSkillEventTemplate as AlexaSkillEvent,
+  'aws:cloudWatchEvent': cloudWatchEventTemplate as CloudWatchEvent,
+  'aws:iot': {},
+  'aws:cognitoUserPool': cognitoUserPoolEventTemplate as CognitoUserPoolEvent,
 }
 
 export default function createEvent(eventType: string, body: any): GeneratedEvent {

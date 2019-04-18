@@ -4,12 +4,12 @@ declare module '*.json' {
 }
 
 export interface AlexaSmartHomeEvent {
-  header: { [name: string]: string },
+  header: { [name: string]: string }
   payload: {
-    switchControlAction: string,
+    switchControlAction: string
     appliance: {
       additionalApplianceDetails: { [name: string]: string },
-      applianceId: string,
+      applianceId: string
     },
     accessToken: string
   } 
@@ -17,15 +17,15 @@ export interface AlexaSmartHomeEvent {
 
 export interface AlexaSkillEvent {
   version: string,
-  session: AlexaSkillSession,
-  context: AlexaSkillContext,
+  session: AlexaSkillSession
+  context: AlexaSkillContext
 
 
 }
 
 export interface AlexaSkillSession {
   new: boolean,
-  sessionId: string,
+  sessionId: string
   application: {
     applicationId: string
   },
@@ -38,7 +38,7 @@ export interface AlexaSkillSession {
 export interface AlexaSkillContext {
   System: {
     device: {
-      deviceId: string,
+      deviceId: string
       supportedInterfaces: {
         AudioPlayer: any
       }
@@ -46,28 +46,43 @@ export interface AlexaSkillContext {
     application: {
       applicationId: string
     },
-    user: AlexaSkillUser,
-    apiEndpoint: string,
+    user: AlexaSkillUser
+    apiEndpoint: string
     apiAccessToken: string
   },
   AudioPlayer: {
-    playerActivity: string,
-    token: string,
-    offsetInMilliseconds: number,
+    playerActivity: string
+    token: string
+    offsetInMilliseconds: number
   }
 }
 
 export interface AlexaSkillUser {
-  userId: string,
-  accessToken: string,
+  userId: string
+  accessToken: string
   permissions: {
     consentToken: string
   }
 }
 
 export interface AlexaSkillRequest {
-  type: string,
-  requestId: string,
-  timestamp: string,
-  locale: string,
+  type: string
+  requestId: string
+  timestamp: string
+  locale: string
+}
+
+export interface CloudWatchEvent {
+  version: string
+  id: string
+  "detail-type": string
+  source: string
+  account: string
+  time: string,
+  region: string,
+  resources: string[],
+  detail: {
+    "instance-id": string,
+    state: string
+  }
 }
