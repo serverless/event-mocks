@@ -1,4 +1,4 @@
-import { APIGatewayEvent, ScheduledEvent, S3Event, KinesisStreamEvent, DynamoDBStreamEvent, SQSEvent, SNSEvent } from 'aws-lambda'
+import { APIGatewayEvent, ScheduledEvent, S3Event, KinesisStreamEvent, DynamoDBStreamEvent, SQSEvent, SNSEvent } from "aws-lambda";
 
 export type GeneratedEvent =
   | APIGatewayEvent
@@ -7,4 +7,4 @@ export type GeneratedEvent =
   | KinesisStreamEvent
   | DynamoDBStreamEvent
   | SQSEvent
-  | SNSEvent
+  | SNSEvent;

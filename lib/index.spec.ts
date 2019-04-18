@@ -173,7 +173,7 @@ describe("createAlexaSkillEvent()", () => {
         System: {
           device: {
             deviceId: "myDevice",
-          }
+          },
         },
       },
     } as any);
