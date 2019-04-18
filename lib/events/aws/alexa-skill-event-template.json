@@ -2,15 +2,15 @@
   "version": "1.0",
   "session": {
     "new": true,
-    "sessionId": "amzn1.echo-api.session.[unique-value-here]",
+    "sessionId": "amzn1.echo-api.session.123123123",
     "application": {
-      "applicationId": "amzn1.ask.skill.[unique-value-here]"
+      "applicationId": "amzn1.ask.skill.123"
     },
     "attributes": {
-      "key": "string value"
+      "key": "this is an attribute"
     },
     "user": {
-      "userId": "amzn1.ask.account.[unique-value-here]",
+      "userId": "amzn1.ask.account.abc",
       "accessToken": "Atza|AAAAAAAA...",
       "permissions": {
         "consentToken": "ZZZZZZZ..."
@@ -20,16 +20,16 @@
   "context": {
     "System": {
       "device": {
-        "deviceId": "string",
+        "deviceId": "123456",
         "supportedInterfaces": {
           "AudioPlayer": {}
         }
       },
       "application": {
-        "applicationId": "amzn1.ask.skill.[unique-value-here]"
+        "applicationId": "amzn1.ask.skill.foobar"
       },
       "user": {
-        "userId": "amzn1.ask.account.[unique-value-here]",
+        "userId": "amzn1.ask.account.user_name",
         "accessToken": "Atza|AAAAAAAA...",
         "permissions": {
           "consentToken": "ZZZZZZZ..."
@@ -46,8 +46,8 @@
   },
   "request": {
     "type": "LaunchRequest",
-    "requestId": "string",
-    "timestamp": "string",
-    "locale": "string"
+    "requestId": "1234-5678-abcd",
+    "timestamp": "123123",
+    "locale": "en-US"
   }
 }

@@ -9,7 +9,7 @@ import scheduledTemplate from './events/aws/scheduled-template.json'
 import s3Template from './events/aws/s3-template.json'
 import kinesisTemplate from './events/aws/kinesis-template.json'
 import dynamoTemplate from './events/aws/dynamo-stream-event-template.json'
-import cloudwatchLogsEventTemplate from './events/aws/cloudwatch-logs-event-template.json'
+import cloudwatchLogEventTemplate from './events/aws/cloud-watch-log-event-template.json'
 import alexaSmartHomeEventTemplate from './events/aws/alexa-smart-home-event-template.json'
 import alexaSkillEventTemplate from './events/aws/alexa-skill-event-template.json'
 import cloudWatchEventTemplate from './events/aws/cloud-watch-event-template.json'
@@ -23,10 +23,10 @@ const dictionary: any = {
   'aws:s3': s3Template as S3Event,
   'aws:kinesis': kinesisTemplate as KinesisStreamEvent,
   'aws:dynamo': dynamoTemplate as DynamoDBStreamEvent,
-  'aws:cloudwatchLogEvent': cloudwatchLogsEventTemplate as CloudWatchLogsEvent,
-  'aws:alexaSmartHomeEvent': alexaSmartHomeEventTemplate as AlexaSmartHomeEvent,
-  'aws:alexaSkillEvent': alexaSkillEventTemplate as AlexaSkillEvent,
-  'aws:cloudWatchEvent': cloudWatchEventTemplate as CloudWatchEvent,
+  'aws:cloudWatchLog': cloudwatchLogEventTemplate as CloudWatchLogsEvent,
+  'aws:alexaSmartHome': alexaSmartHomeEventTemplate as AlexaSmartHomeEvent,
+  'aws:alexaSkill': alexaSkillEventTemplate as AlexaSkillEvent,
+  'aws:cloudWatch': cloudWatchEventTemplate as CloudWatchEvent,
   'aws:iot': {},
   'aws:cognitoUserPool': cognitoUserPoolEventTemplate as CognitoUserPoolEvent,
 }

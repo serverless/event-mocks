@@ -10,7 +10,7 @@
   },
   "request": {
     "userAttributes": {
-      "string": "string"
+      "someAttr": "someValue"
     }
   },
   "response": {}
