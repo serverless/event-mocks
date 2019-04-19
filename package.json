@@ -1,6 +1,6 @@
 {
   "name": "@serverless/event-mocks",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Event Mocks is a simple library designed to generate simple AWS events for testing and automation purposes.",
   "main": "dist/index.js",
   "scripts": {
