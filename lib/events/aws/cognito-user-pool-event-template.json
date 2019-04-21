@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": "2",
   "triggerSource": "string",
   "region": "us-east-1",
   "userPoolId": "abcd123",
