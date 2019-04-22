@@ -29,7 +29,7 @@ import alexaSkillEventTemplate from "./events/aws/alexa-skill-event-template.jso
 import cloudWatchEventTemplate from "./events/aws/cloud-watch-event-template.json";
 import cognitoUserPoolEventTemplate from "./events/aws/cognito-user-pool-event-template.json";
 
-const dictionary = {
+export const dictionary = {
   "aws:sns": snsTemplate as SNSEvent,
   "aws:sqs": sqsTemplate as SQSEvent,
   "aws:apiGateway": apiGatewayTemplate as APIGatewayEvent,
