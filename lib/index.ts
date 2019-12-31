@@ -48,7 +48,7 @@ export const dictionary = {
 
 export default function createEvent<T extends keyof typeof dictionary, B>(
   eventType: T,
-  body: typeof dictionary[T],
+  body: Partial<typeof dictionary[T]>,
 ): typeof dictionary[T] {
   const event = dictionary[eventType];
   let generatedEvent = {};
