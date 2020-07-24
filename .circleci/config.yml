@@ -21,11 +21,11 @@ jobs:
       - checkout
       - node/install-packages
       - run:
-          command: Build
-          name: npm run-script build
+          name: Build
+          command: npm run-script build
       - run:
-          command: Publish
-          name: npm publish
+          name: Publish
+          command: npm publish
 workflows:
   test-and-deploy:
     jobs:
