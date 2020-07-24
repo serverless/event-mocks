@@ -1,4 +1,4 @@
-# Event Mocks
+# mock-aws-events
 
 ## Context
 This library is a fork of the (currently unmaintained) [@serverless/event-mocks](https://github.com/serverless/event-mocks) package. It was created to publish bug fixes and PRs that were blocking development. If [@serverless/event-mocks](https://github.com/serverless/event-mocks) is actively developed again, this package can be deprecated.
@@ -21,12 +21,18 @@ Supported Event Sources are:
 
 The library simply uses default event source mock templates and merge it with any overwrite you provide. [Check out the JSON template files](./lib/events/aws) to learn more about the data structure of each event source.
 
+## Installation
+
+```
+npm install mock-aws-events --save-dev
+```
+
 ## Usage
 
 ### SNS
 
 ```js
-import createEvent from "@serverless/event-mocks"
+import createEvent from "mock-aws-events"
 
 const mocked = createEvent(
   "aws:sns",
@@ -42,7 +48,7 @@ const mocked = createEvent(
 ### API Gateway
 
 ```js
-import createEvent from "@serverless/event-mocks"
+import createEvent from "mock-aws-events"
 
 const event = createEvent(
   "aws:apiGateway",
@@ -57,7 +63,7 @@ const event = createEvent(
 ### S3
 
 ```js
-import createEvent from "@serverless/event-mocks"
+import createEvent from "mock-aws-events"
 
 const event = createEvent(
   "aws:s3",
@@ -79,7 +85,7 @@ const event = createEvent(
 ### Scheduled
 
 ```js
-import createEvent from "@serverless/event-mocks"
+import createEvent from "mock-aws-events"
 
 const event = createEvent(
   "aws:scheduled",
@@ -91,7 +97,7 @@ const event = createEvent(
 ### Kinesis
 
 ```js
-import createEvent from "@serverless/event-mocks"
+import createEvent from "mock-aws-events"
 
 const event = createEvent(
   "aws:kinesis",
@@ -103,7 +109,7 @@ const event = createEvent(
 ### Dynamo
 
 ```js
-import createEvent from "@serverless/event-mocks"
+import createEvent from "mock-aws-events"
 
 const event = createEvent(
   "aws:dynamo",
@@ -142,75 +148,89 @@ const event = createEvent(
 ### Websocket event
 
 ```js
-  const event = createEvent("aws:websocket", {
-    body: {
-      first_name: "Sam",
-      last_name: "Smith",
-    },
-    requestContext: {
-      connectedAt: 123,
-      connectionId: "abc123",
-    },
-  });
+import createEvent from "mock-aws-events"
+
+const event = createEvent("aws:websocket", {
+  body: {
+    first_name: "Sam",
+    last_name: "Smith",
+  },
+  requestContext: {
+    connectedAt: 123,
+    connectionId: "abc123",
+  },
+});
 ```
 ### CloudWatch event
 
 ```js
-  const event = createEvent("aws:cloudWatch", {
-    "detail-type": "Something has been deleted.",
-    "region": "us-east-1"
-  });
+import createEvent from "mock-aws-events"
+
+const event = createEvent("aws:cloudWatch", {
+  "detail-type": "Something has been deleted.",
+  "region": "us-east-1"
+});
 ```
 
 ### CloudWatchLog event
 
 ```js
-  const event = createEvent("aws:cloudWatchLog", {
-    awslogs: {
-      data: "Some gzipped, then base64 encoded data",
-    }
-  });
+import createEvent from "mock-aws-events"
+
+const event = createEvent("aws:cloudWatchLog", {
+  awslogs: {
+    data: "Some gzipped, then base64 encoded data",
+  }
+});
 ```
 
 ### Alexa Skill event
 
 ```js
-  const event = createEvent("aws:alexaSkill", {
-    request: {
-      type: "CanFulfillIntentRequest",
-    },
-    context: {
-      System: {
-        device: {
-          deviceId: "myDevice",
-        },
+import createEvent from "mock-aws-events"
+
+const event = createEvent("aws:alexaSkill", {
+  request: {
+    type: "CanFulfillIntentRequest",
+  },
+  context: {
+    System: {
+      device: {
+        deviceId: "myDevice",
       },
     },
-  }
+  },
+}
 ```
 
 ### Alexa SmartHome event
 ```js
-  const event = createEvent("aws:alexaSmartHome", {
-    payload: {
-      switchControlAction: "TURN_OFF",
-    },
-  }
+import createEvent from "mock-aws-events"
+
+const event = createEvent("aws:alexaSmartHome", {
+  payload: {
+    switchControlAction: "TURN_OFF",
+  },
+}
 ```
 
 ### IoT event
 ```js
-  const event = createEvent("aws:iot", {
-    this: {
-      can: {
-        be: "anything I want",
-      },
-    }
+import createEvent from "mock-aws-events"
+
+const event = createEvent("aws:iot", {
+  this: {
+    can: {
+      be: "anything I want",
+    },
+  }
 ```
 
 ### Cognito Pool Event
 ```js
-  const event = createEvent("aws:cognitoUserPool", {
-    userName: "Aaron Stuyvenberg",
-  }
+import createEvent from "mock-aws-events"
+
+const event = createEvent("aws:cognitoUserPool", {
+  userName: "Aaron Stuyvenberg",
+}
 ```

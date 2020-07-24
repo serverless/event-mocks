@@ -1,6 +1,6 @@
 {
-  "name": "@metronome-industries/event-mocks",
-  "version": "1.2.0",
+  "name": "mock-aws-events",
+  "version": "1.0.0",
   "description": "Event Mocks is a simple library designed to generate simple AWS events for testing and automation purposes.",
   "main": "dist/index.js",
   "scripts": {
@@ -31,8 +31,5 @@
   "dependencies": {
     "@types/lodash": "^4.14.123",
     "lodash": "^4.17.11"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }
