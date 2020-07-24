@@ -24,6 +24,9 @@ jobs:
           name: Build
           command: npm run-script build
       - run:
+          name: "Setup npm auth"
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+      - run:
           name: Publish
           command: npm publish
 workflows:
