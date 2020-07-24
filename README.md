@@ -1,4 +1,8 @@
 # Event Mocks
+
+## Context
+This library is a fork of the (currently unmaintained) [@serverless/event-mocks](https://github.com/serverless/event-mocks) package. It was created to publish bug fixes and PRs that were blocking development. If [@serverless/event-mocks](https://github.com/serverless/event-mocks) is actively developed again, this package can be deprecated.
+
 A small library that includes details mocks of AWS Lambda event sources. Useful for use when unit testing your Lambda functions.
 Supported Event Sources are:
 - [x] API Gateway

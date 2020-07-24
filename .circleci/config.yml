@@ -1,0 +1,38 @@
+version: 2.1
+orbs:
+  node: circleci/node@3.0.0
+jobs:
+  test:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: "Lint"
+          command: npm run-script lint
+      - run:
+          name: "Test"
+          command: npm test
+  deploy:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          command: Build
+          name: npm run-script build
+      - run:
+          command: Publish
+          name: npm publish
+workflows:
+  test-and-deploy:
+    jobs:
+      - test
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
