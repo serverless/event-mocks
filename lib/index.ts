@@ -45,10 +45,11 @@ export const dictionary = {
   "aws:cognitoUserPool": cognitoUserPoolEventTemplate as CognitoUserPoolEvent,
   "aws:websocket": apiGatewayTemplate as APIGatewayEvent, // Websockets are included in APIG typedef: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/32855/files
 };
-
+// https://typeofnan.dev/creating-your-own-deeppartial-type-in-typescript/
+type DeepPartial<T> = Partial<{ [P in keyof T]: DeepPartial<T[P]> }>;
 export default function createEvent<T extends keyof typeof dictionary, B>(
   eventType: T,
-  body: typeof dictionary[T],
+  body: DeepPartial<typeof dictionary[T]>,
 ): typeof dictionary[T] {
   const event = dictionary[eventType];
   let generatedEvent = {};
