@@ -50,6 +50,26 @@ describe("createApigEvent()", () => {
   });
 });
 
+it("should return APIG mocked event with custom authorizer", () => {
+  const event = createEvent("aws:apiGateway", {
+    requestContext: {
+      authorizer: {
+        user_info: JSON.stringify({
+          id: 1234,
+          name: "Sam Smith",
+        }),
+      },
+    },
+  } as any);
+
+  expect(!!event.requestContext.authorizer).to.be.true;
+
+  const authorizer = event.requestContext.authorizer || {};
+  const parsedAuthorizer = JSON.parse(authorizer.user_info || "");
+  expect(parsedAuthorizer.id).to.eql(1234);
+  expect(parsedAuthorizer.name).to.eql("Sam Smith");
+});
+
 describe("createWebsocketEvent()", () => {
   it("should return websocket mocked event", () => {
     const event = createEvent("aws:websocket", {
