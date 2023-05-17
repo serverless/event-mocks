@@ -29,26 +29,35 @@ import alexaSkillEventTemplate from "./events/aws/alexa-skill-event-template.jso
 import cloudWatchEventTemplate from "./events/aws/cloud-watch-event-template.json";
 import cognitoUserPoolEventTemplate from "./events/aws/cognito-user-pool-event-template.json";
 
+type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;
+
 export const dictionary = {
-  "aws:sns": snsTemplate as SNSEvent,
-  "aws:sqs": sqsTemplate as SQSEvent,
-  "aws:apiGateway": apiGatewayTemplate as APIGatewayEvent,
-  "aws:scheduled": scheduledTemplate as ScheduledEvent,
-  "aws:s3": s3Template as S3Event,
-  "aws:kinesis": kinesisTemplate as KinesisStreamEvent,
-  "aws:dynamo": dynamoTemplate as DynamoDBStreamEvent,
-  "aws:cloudWatchLog": cloudwatchLogEventTemplate as CloudWatchLogsEvent,
-  "aws:alexaSmartHome": alexaSmartHomeEventTemplate as AlexaSmartHomeEvent,
-  "aws:alexaSkill": alexaSkillEventTemplate as AlexaSkillEvent,
-  "aws:cloudWatch": cloudWatchEventTemplate as CloudWatchEvent,
+  "aws:sns": snsTemplate as DeepPartial<SNSEvent>,
+  "aws:sqs": sqsTemplate as DeepPartial<SQSEvent>,
+  "aws:apiGateway": apiGatewayTemplate as DeepPartial<APIGatewayEvent>,
+  "aws:scheduled": scheduledTemplate as DeepPartial<ScheduledEvent>,
+  "aws:s3": s3Template as DeepPartial<S3Event>,
+  "aws:kinesis": kinesisTemplate as DeepPartial<KinesisStreamEvent>,
+  "aws:dynamo": dynamoTemplate as DeepPartial<DynamoDBStreamEvent>,
+  "aws:cloudWatchLog":
+    cloudwatchLogEventTemplate as DeepPartial<CloudWatchLogsEvent>,
+  "aws:alexaSmartHome":
+    alexaSmartHomeEventTemplate as DeepPartial<AlexaSmartHomeEvent>,
+  "aws:alexaSkill": alexaSkillEventTemplate as DeepPartial<AlexaSkillEvent>,
+  "aws:cloudWatch": cloudWatchEventTemplate as DeepPartial<CloudWatchEvent>,
   "aws:iot": {} as any,
-  "aws:cognitoUserPool": cognitoUserPoolEventTemplate as CognitoUserPoolEvent,
-  "aws:websocket": apiGatewayTemplate as APIGatewayEvent, // Websockets are included in APIG typedef: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/32855/files
+  "aws:cognitoUserPool":
+    cognitoUserPoolEventTemplate as DeepPartial<CognitoUserPoolEvent>,
+  "aws:websocket": apiGatewayTemplate as DeepPartial<APIGatewayEvent>, // Websockets are included in APIG typedef: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/32855/files
 };
 
 export default function createEvent<T extends keyof typeof dictionary, B>(
   eventType: T,
-  body: typeof dictionary[T],
+  body: typeof dictionary[T]
 ): typeof dictionary[T] {
   const event = dictionary[eventType];
   let generatedEvent = {};
