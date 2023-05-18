@@ -1,4 +1,4 @@
-import { merge, cloneDeep, Dictionary } from "lodash";
+import { merge, cloneDeep } from "lodash";
 import {
   APIGatewayEvent,
   ScheduledEvent,
@@ -57,8 +57,8 @@ export const dictionary = {
 
 export default function createEvent<T extends keyof typeof dictionary, B>(
   eventType: T,
-  body: typeof dictionary[T]
-): typeof dictionary[T] {
+  body: (typeof dictionary)[T]
+): (typeof dictionary)[T] {
   const event = dictionary[eventType];
   let generatedEvent = {};
   if (event) {
