@@ -16,8 +16,9 @@
   "author": "Serverless, Inc.",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@types/aws-lambda": "^8.10.115",
-    "@types/chai": "^4.3.5",
+    "@types/aws-lambda": "8.10.24",
+    "@types/chai": "~4.1.7",
+    "@types/lodash": "4.14.123",
     "@types/mocha": "^5.2.7",
     "@types/node": "^11.15.54",
     "aws-lambda": "^0.1.2",
@@ -26,10 +27,9 @@
     "ts-mocha": "^6.0.0",
     "ts-node": "^8.10.2",
     "tslint": "^5.20.1",
-    "typescript": "^3.9.10"
+    "typescript": "~3.4.5"
   },
   "dependencies": {
-    "@types/lodash": "^4.14.194",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.11"
   }
 }

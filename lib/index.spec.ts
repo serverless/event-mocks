@@ -1,4 +1,5 @@
 import { expect } from "chai";
+import { get } from "lodash";
 import createEvent from "./index";
 
 describe("creating a new SNS event", () => {
@@ -11,9 +12,9 @@ describe("creating a new SNS event", () => {
           },
         },
       ],
-    } as any);
-    expect(event.Records[0].Sns.Message).to.equal("trigger-email");
-    expect(event.Records[0].Sns.Type).to.equal("Notification");
+    });
+    expect(get(event, "Records[0].Sns.Message")).to.equal("trigger-email");
+    expect(get(event, "Records[0].Sns.Type")).to.equal("Notification");
   });
 });
 
@@ -27,10 +28,10 @@ describe("createSqsEvent()", () => {
           }),
         },
       ],
-    } as any);
+    });
 
-    expect(event.Records[0].body).to.equal("{\"foo\":\"bar\"}");
-    expect(event.Records[0].eventSource).to.equal("aws:sqs");
+    expect(get(event, "Records[0].body")).to.equal('{"foo":"bar"}');
+    expect(get(event, "Records[0].eventSource")).to.equal("aws:sqs");
   });
 });
 
@@ -41,7 +42,7 @@ describe("createApigEvent()", () => {
         first_name: "Sam",
         last_name: "Smith",
       }),
-    } as any);
+    });
     const parsedBody = JSON.parse(event.body || "");
 
     expect(parsedBody.first_name).to.equal("Sam");
@@ -61,13 +62,13 @@ describe("createWebsocketEvent()", () => {
         connectedAt: 123,
         connectionId: "abc123",
       },
-    } as any);
+    });
     const parsedBody = JSON.parse(event.body || "");
 
     expect(parsedBody.first_name).to.equal("Sam");
     expect(parsedBody.last_name).to.equal("Smith");
-    expect(event.requestContext.connectedAt).to.equal(123);
-    expect(event.requestContext.connectionId).to.equal("abc123");
+    expect(get(event, "requestContext.connectedAt")).to.equal(123);
+    expect(get(event, "requestContext.connectionId")).to.equal("abc123");
   });
 });
 
@@ -86,11 +87,11 @@ describe("createS3Event()", () => {
           },
         },
       ],
-    } as any);
+    });
 
-    expect(event.Records[0].s3.bucket.name).to.equal("my-bucket-name");
-    expect(event.Records[0].s3.object.key).to.equal("object-key");
-    expect(event.Records[0].eventName).to.equal("ObjectCreated:Put");
+    expect(get(event, "Records[0].s3.bucket.name")).to.equal("my-bucket-name");
+    expect(get(event, "Records[0].s3.object.key")).to.equal("object-key");
+    expect(get(event, "Records[0].eventName")).to.equal("ObjectCreated:Put");
   });
 
   it("should return S3 mocked event without side-effect", () => {
@@ -107,7 +108,7 @@ describe("createS3Event()", () => {
           },
         },
       ],
-    } as any);
+    });
 
     const event2 = createEvent("aws:s3", {
       Records: [
@@ -122,12 +123,12 @@ describe("createS3Event()", () => {
           },
         },
       ],
-    } as any);
+    });
 
-    expect(event.Records[0].s3.bucket.name).to.equal("my-bucket-name");
-    expect(event.Records[0].s3.object.key).to.equal("object-key");
-    expect(event2.Records[0].s3.object.key).to.equal("object-key-2");
-    expect(event.Records[0].eventName).to.equal("ObjectCreated:Put");
+    expect(get(event, "Records[0].s3.bucket.name")).to.equal("my-bucket-name");
+    expect(get(event, "Records[0].s3.object.key")).to.equal("object-key");
+    expect(get(event2, "Records[0].s3.object.key")).to.equal("object-key-2");
+    expect(get(event, "Records[0].eventName")).to.equal("ObjectCreated:Put");
   });
 });
 
@@ -135,7 +136,7 @@ describe("createScheduledEvent()", () => {
   it("should return Scheduled mocked event", () => {
     const event = createEvent("aws:scheduled", {
       region: "us-west-2",
-    } as any);
+    });
 
     expect(event.region).to.equal("us-west-2");
     expect(event["detail-type"]).to.equal("Scheduled Event");
@@ -152,10 +153,12 @@ describe("createKinesisEvent()", () => {
           },
         },
       ],
-    } as any);
+    });
 
     expect(
-      Buffer.from(event.Records[0].kinesis.data, "base64").toString("ascii"),
+      Buffer.from(get(event, "Records[0].kinesis.data"), "base64").toString(
+        "ascii"
+      )
     ).to.equal("kinesis test");
   });
 });
@@ -164,8 +167,8 @@ describe("createCloudWatchEvent()", () => {
   it("should return a valid event", () => {
     const event = createEvent("aws:cloudWatch", {
       "detail-type": "Something has been deleted.",
-      "region": "us-east-1",
-    } as any);
+      region: "us-east-1",
+    });
     expect(event["detail-type"]).to.equal("Something has been deleted.");
     expect(event.region).to.equal("us-east-1");
   });
@@ -179,7 +182,7 @@ describe("createCloudWatchLogEvent()", () => {
       },
     }) as any;
     expect(event.awslogs.data).to.equal(
-      "Some gzipped, then base64 encoded data",
+      "Some gzipped, then base64 encoded data"
     );
   });
 });
@@ -197,9 +200,9 @@ describe("createAlexaSkillEvent()", () => {
           },
         },
       },
-    } as any);
-    expect(event.request.type).to.equal("CanFulfillIntentRequest");
-    expect(event.context.System.device.deviceId).to.equal("myDevice");
+    });
+    expect(get(event, "request.type")).to.equal("CanFulfillIntentRequest");
+    expect(get(event, "context.System.device.deviceId")).to.equal("myDevice");
   });
 });
 
@@ -209,8 +212,8 @@ describe("createAlexaSmartHomeEvent()", () => {
       payload: {
         switchControlAction: "TURN_OFF",
       },
-    } as any);
-    expect(event.payload.switchControlAction).to.equal("TURN_OFF");
+    });
+    expect(get(event, "payload.switchControlAction")).to.equal("TURN_OFF");
   });
 });
 
@@ -222,7 +225,7 @@ describe("createIotEvent()", () => {
           be: "anything I want",
         },
       },
-    } as any);
+    });
     expect(event.this.can.be).to.equal("anything I want");
   });
 });
@@ -231,7 +234,7 @@ describe("createCognitoPoolEvent()", () => {
   it("should return a valid event", () => {
     const event = createEvent("aws:cognitoUserPool", {
       userName: "notAJ",
-    } as any);
+    });
     expect(event.userName).to.eql("notAJ");
   });
 });
